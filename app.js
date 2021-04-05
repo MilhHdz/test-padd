@@ -109,18 +109,18 @@ app.delete('/product/:id', (req, res) => {
 
 
 // MySQL
-// const conecction = mysql.createConnection({
-//     host: 'bfb5bwi7b8jjeybhkecs-mysql.services.clever-cloud.com',
-//     user: 'uiqbxvyd79n587lj',
-//     password: 'AQU6eUtz7hhXVAUdbZfx',
-//     database: 'bfb5bwi7b8jjeybhkecs'
-// });
+const conecction = mysql.createConnection({
+    host: 'bfb5bwi7b8jjeybhkecs-mysql.services.clever-cloud.com',
+    user: 'uiqbxvyd79n587lj',
+    password: 'AQU6eUtz7hhXVAUdbZfx',
+    database: 'bfb5bwi7b8jjeybhkecs'
+});
 
 
-// conecction.connect(error => {
-//     if (error) throw error;
-//     console.log('Database server running!');
-// });
+conecction.connect(error => {
+    if (error) throw error;
+    console.log('Database server running!');
+});
 
 
 app.listen(PORT, () => console.log(`server running on port ${PORT}`));
