@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const mysql = require('mysql');
+const cors = require('cors');
 
 
 
@@ -8,7 +9,7 @@ const PORT = process.env.PORT || 3050;
 
 const app = express();
 
-app.use(bodyParser.json());
+app.use(cors(), bodyParser.json());
 
 // Rutas
 app.get('/', (req, res) => {
@@ -108,18 +109,18 @@ app.delete('/product/:id', (req, res) => {
 
 
 // MySQL
-const conecction = mysql.createConnection({
-    host: 'bfb5bwi7b8jjeybhkecs-mysql.services.clever-cloud.com',
-    user: 'uiqbxvyd79n587lj',
-    password: 'AQU6eUtz7hhXVAUdbZfx',
-    database: 'bfb5bwi7b8jjeybhkecs'
-});
+// const conecction = mysql.createConnection({
+//     host: 'bfb5bwi7b8jjeybhkecs-mysql.services.clever-cloud.com',
+//     user: 'uiqbxvyd79n587lj',
+//     password: 'AQU6eUtz7hhXVAUdbZfx',
+//     database: 'bfb5bwi7b8jjeybhkecs'
+// });
 
 
-conecction.connect(error => {
-    if (error) throw error;
-    console.log('Database server running!');
-});
+// conecction.connect(error => {
+//     if (error) throw error;
+//     console.log('Database server running!');
+// });
 
 
 app.listen(PORT, () => console.log(`server running on port ${PORT}`));
