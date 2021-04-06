@@ -23,7 +23,7 @@ app.get('/product/', (req, res) => {
     conecction.query(sql, (error, results) => {
         if (error) throw error;
         if (results.length > 0) res.json(results);
-        else res.send('No hay resulltados')
+        else res.json({'mensaje':'No hay resulltados'})
     });
 });
 
@@ -36,7 +36,7 @@ app.get('/product/:id', (req, res) => {
     conecction.query(sql, (error, results) => {
         if (error) throw error;
         if (results.length > 0) res.json(results);
-        else res.send('No hay resulltados')
+        else res.json({'mensaje':'No hay resulltados'})
     });
 });
 
@@ -60,7 +60,7 @@ app.post('/product/', (req, res) => {
 
     conecction.query(sql, productoObj, error => {
         if (error) throw error;
-        res.send('Producto creado');
+        res.json({'mensaje':'Producto creado'});
 
     });
 });
@@ -90,7 +90,7 @@ app.put('/product/:id', (req, res) => {
 
     conecction.query(sql, error => {
         if (error) throw error;
-        res.send('Producto actualizado');
+        res.json({'mensaje':'Producto actualizado'});
     });
 });
 
@@ -103,24 +103,27 @@ app.delete('/product/:id', (req, res) => {
 
     conecction.query(sql, error => {
         if (error) throw error;
-        res.send('Producto eliminado');
+        res.json({'mensaje':'Producto eliminado'});
     });
 });
 
+// mysql://b443f318a9f91e:46259865@us-cdbr-east-03.cleardb.com/heroku_4bd69bbb2cbb271?reconnect=true
 
 // MySQL
-const conecction = mysql.createConnection({
-    host: 'bfb5bwi7b8jjeybhkecs-mysql.services.clever-cloud.com',
-    user: 'uiqbxvyd79n587lj',
-    password: 'AQU6eUtz7hhXVAUdbZfx',
-    database: 'bfb5bwi7b8jjeybhkecs'
+const conecction = mysql.createPool({
+    host: 'us-cdbr-east-03.cleardb.com',
+    user: 'b443f318a9f91e',
+    database: 'heroku_4bd69bbb2cbb271',
+    password: '46259865'
 });
 
+conecction.query('select 1 + 1', (err, rows) => { /* */});
 
-conecction.connect(error => {
-    if (error) throw error;
-    console.log('Database server running!');
-});
+
+// conecction. (error => {
+//     if (error) throw error;
+//     console.log('Database server running!');
+// });
 
 
 app.listen(PORT, () => console.log(`server running on port ${PORT}`));
