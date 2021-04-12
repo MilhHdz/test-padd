@@ -1,7 +1,13 @@
 const bodyParser = require('body-parser');
 const express = require('express');
-const mysql = require('mysql');
+const conecction = require('./conexcionDB');
 const cors = require('cors');
+
+// Peticiones
+const productos = require('./Routes/Productos');
+const categorias = require('./Routes/Categorias');
+const armadoras = require('./Routes/Armadoras');
+const lineas = require('./Routes/Lineas');
 
 
 
@@ -16,114 +22,38 @@ app.get('/', (req, res) => {
     res.send('Welcome');
 });
 
-// Obtener lista de productos
-app.get('/product/', (req, res) => {
-    const sql = 'SELECT * FROM productos';
+// PRODUCTOS
+app.get('/product/', productos.getAllProducts);
+app.get('/product/:id', productos.getProduct);
+app.post('/product/', productos.saveProduct);
+app.put('/product/:id', productos.updateProduct);
+app.delete('/product/:id', productos.deleteProduct);
 
-    conecction.query(sql, (error, results) => {
-        if (error) throw error;
-        if (results.length > 0) res.json(results);
-        else res.json({'mensaje':'No hay resulltados'})
-    });
-});
+// CATEGORIAS
+app.get('/category/', categorias.getAllCategories);
+app.get('/category/:id', categorias.getCategory);
+app.post('/category/', categorias.saveCategory);
+app.put('/category/:id', categorias.updateCategory);
+app.delete('/category/:id', categorias.deleteCategory);
 
-
-// Obtener un producto
-app.get('/product/:id', (req, res) => {
-    const { id } = req.params
-    const sql = `SELECT * FROM productos WHERE id = ${id}`;
-
-    conecction.query(sql, (error, results) => {
-        if (error) throw error;
-        if (results.length > 0) res.json(results);
-        else res.json({'mensaje':'No hay resulltados'})
-    });
-});
+// ARMADORAS
+app.get('/armadora/', armadoras.getAllArmadora);
+app.get('/armadora/:id', armadoras.getArmadora);
+app.post('/armadora/', armadoras.saveArmadora);
+app.put('/armadora/:id', armadoras.updateArmadora);
+app.delete('/armadora/:id', armadoras.deleteArmadora);
 
 
-// Guardar un nuevo producto
-app.post('/product/', (req, res) => {
-    const sql = 'INSERT INTO productos SET ?';
-
-    const productoObj = {
-        nombre: req.body.nombre,
-        unidadmedida: req.body.unidadmedida,
-        tipo: req.body.tipo,
-        idlinea: req.body.idlinea,
-        idcategoria: req.body.idcategoria,
-        parte: req.body.parte,
-        precio: req.body.precio,
-        uni_9na: req.body.uni_9na,
-        uni_pan: req.body.uni_pan,
-        uni_sup: req.body.uni_sup
-    }
-
-    conecction.query(sql, productoObj, error => {
-        if (error) throw error;
-        res.json({'mensaje':'Producto creado'});
-
-    });
-});
-
-
-// Editar un producto
-app.put('/product/:id', (req, res) => {
-    const { id } = req.params;
-    const { nombre, unidadmedida, tipo,
-        idlinea, idcategoria, parte,
-        precio, uni_9na, uni_pan,
-        uni_sup } = req.body;
-
-
-    const sql = `UPDATE productos SET 
-        nombre = '${nombre}',
-        unidadmedida = '${unidadmedida}',
-        tipo = '${tipo}',
-        idlinea = '${idlinea}',
-        idcategoria = '${idcategoria}',
-        parte = '${parte}',
-        precio = '${precio}',
-        uni_9na = '${uni_9na}',
-        uni_pan = '${uni_pan}',
-        uni_sup = '${uni_sup}'
-        WHERE id = ${id}`;
-
-    conecction.query(sql, error => {
-        if (error) throw error;
-        res.json({'mensaje':'Producto actualizado'});
-    });
-});
-
-
-// Eliminar un producto
-app.delete('/product/:id', (req, res) => {
-    
-    const {id } = req.params;
-    const sql = `DELETE FROM productos WHERE id = ${id}`
-
-    conecction.query(sql, error => {
-        if (error) throw error;
-        res.json({'mensaje':'Producto eliminado'});
-    });
-});
+// LINEAS
+app.get('/linea/', lineas.getAllLinea);
+app.get('/linea/:id', lineas.getLinea);
+app.post('/linea/', lineas.saveLinea);
+app.put('/linea/:id', lineas.updateLinea);
+app.delete('/linea/:id', lineas.deleteLinea);
 
 // mysql://b443f318a9f91e:46259865@us-cdbr-east-03.cleardb.com/heroku_4bd69bbb2cbb271?reconnect=true
 
-// MySQL
-const conecction = mysql.createPool({
-    host: 'us-cdbr-east-03.cleardb.com',
-    user: 'b443f318a9f91e',
-    database: 'heroku_4bd69bbb2cbb271',
-    password: '46259865'
-});
-
-conecction.query('select 1 + 1', (err, rows) => { /* */});
-
-
-// conecction. (error => {
-//     if (error) throw error;
-//     console.log('Database server running!');
-// });
+conecction.query('select 1 + 1', (err, rows) => { /* */ });
 
 
 app.listen(PORT, () => console.log(`server running on port ${PORT}`));
