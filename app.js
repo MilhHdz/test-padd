@@ -8,6 +8,7 @@ const productos = require('./Routes/Productos');
 const categorias = require('./Routes/Categorias');
 const armadoras = require('./Routes/Armadoras');
 const lineas = require('./Routes/Lineas');
+const sagaji = require('./Routes/Sagaji');
 
 
 
@@ -50,6 +51,18 @@ app.get('/linea/:id', lineas.getLinea);
 app.post('/linea/', lineas.saveLinea);
 app.put('/linea/:id', lineas.updateLinea);
 app.delete('/linea/:id', lineas.deleteLinea);
+
+
+// SAGAJI
+app.get('/sagaji/:tipo', sagaji.getSelect2);
+app.get('/sagaji/:tipo/:primera', sagaji.getSelect3);
+app.get('/sagaji/:tipo/:primera/:segunda', sagaji.getSelect4);
+app.get('/sagaji/:tipo/:primera/:segunda/:tercera/:pagina', sagaji.searchProduct);
+
+
+app.get('/aplicaciones/:clproducto', sagaji.getAplications);
+app.get('/equivalentes/:clproducto', sagaji.getEquivalences);
+
 
 // mysql://b443f318a9f91e:46259865@us-cdbr-east-03.cleardb.com/heroku_4bd69bbb2cbb271?reconnect=true
 
