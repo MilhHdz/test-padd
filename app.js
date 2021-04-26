@@ -9,7 +9,8 @@ const categorias = require('./Routes/Categorias');
 const armadoras = require('./Routes/Armadoras');
 const lineas = require('./Routes/Lineas');
 const sagaji = require('./Routes/Sagaji');
-
+const modelos = require('./Routes/Modelos');
+const descripcion = require('./Routes/Descripcion');
 
 
 const PORT = process.env.PORT || 3050;
@@ -23,6 +24,7 @@ app.get('/', (req, res) => {
     res.send('Welcome');
 });
 
+
 // PRODUCTOS
 app.get('/product/', productos.getAllProducts);
 app.get('/product/:id', productos.getProduct);
@@ -30,12 +32,14 @@ app.post('/product/', productos.saveProduct);
 app.put('/product/:id', productos.updateProduct);
 app.delete('/product/:id', productos.deleteProduct);
 
+
 // CATEGORIAS
 app.get('/category/', categorias.getAllCategories);
 app.get('/category/:id', categorias.getCategory);
 app.post('/category/', categorias.saveCategory);
 app.put('/category/:id', categorias.updateCategory);
 app.delete('/category/:id', categorias.deleteCategory);
+
 
 // ARMADORAS
 app.get('/armadora/', armadoras.getAllArmadora);
@@ -51,6 +55,14 @@ app.get('/linea/:id', lineas.getLinea);
 app.post('/linea/', lineas.saveLinea);
 app.put('/linea/:id', lineas.updateLinea);
 app.delete('/linea/:id', lineas.deleteLinea);
+
+
+// MODELOS
+app.get('/modelo/', modelos.getAllModelos);
+
+
+// DESCRIPCION
+app.get('/descripcion/', descripcion.getAllDescription);
 
 
 // SAGAJI
