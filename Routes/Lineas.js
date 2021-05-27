@@ -28,7 +28,7 @@ const saveLinea = (req, res) => {
     const sql = 'INSERT INTO lineas SET ?';
 
     const lineaObj = {
-        clave: req.body.clave,
+        // clave: req.body.clave,
         nombre: req.body.nombre
     }
 
@@ -42,11 +42,10 @@ const saveLinea = (req, res) => {
 
 const updateLinea = (req, res) => {
     const { id } = req.params;
-    const { clave, nombre } = req.body;
+    const { nombre } = req.body;
 
-
+    // clave = '${clave}', 
     const sql = `UPDATE lineas SET
-        clave = '${clave}', 
         nombre = '${nombre}'
         WHERE id = ${id}`;
 
