@@ -9,6 +9,8 @@ const categorias = require('./Routes/Categorias');
 const armadoras = require('./Routes/Armadoras');
 const lineas = require('./Routes/Lineas');
 const clientes = require('./Routes/Clientes');
+const proveedores = require('./Routes/Proveedor');
+const facturas = require('./Routes/Facturas');
 const sagaji = require('./Routes/Sagaji');
 const modelos = require('./Routes/Modelos');
 const descripcion = require('./Routes/Descripcion');
@@ -64,6 +66,22 @@ app.get('/cliente/:id', clientes.getCliente);
 app.post('/cliente/', clientes.saveCliente);
 app.put('/cliente/:id', clientes.updateCliente);
 app.delete('/cliente/:id', clientes.deleteCliente);
+
+
+// PROVEEDORES
+app.get('/proveedor/', proveedores.getAllProveedor);
+app.get('/proveedor/:id', proveedores.getProveedor);
+app.post('/proveedor/', proveedores.saveProveedor);
+app.put('/proveedor/:id', proveedores.updateProveedor);
+app.delete('/proveedor/:id', proveedores.deleteProveedor);
+
+
+// FACTURAS
+app.get('/factura/', facturas.getAllFactura);
+app.get('/factura/:id', facturas.getFactura);
+app.post('/factura/', facturas.saveFactura);
+app.put('/factura/:id', facturas.updateFactura);
+app.delete('/factura/:id', facturas.deleteFactura);
 
 
 // MODELOS
