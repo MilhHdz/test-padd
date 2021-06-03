@@ -8,6 +8,7 @@ const productos = require('./Routes/Productos');
 const categorias = require('./Routes/Categorias');
 const armadoras = require('./Routes/Armadoras');
 const lineas = require('./Routes/Lineas');
+const clientes = require('./Routes/Clientes');
 const sagaji = require('./Routes/Sagaji');
 const modelos = require('./Routes/Modelos');
 const descripcion = require('./Routes/Descripcion');
@@ -55,6 +56,14 @@ app.get('/linea/:id', lineas.getLinea);
 app.post('/linea/', lineas.saveLinea);
 app.put('/linea/:id', lineas.updateLinea);
 app.delete('/linea/:id', lineas.deleteLinea);
+
+
+// CLIENTES
+app.get('/cliente/', clientes.getAllCliente);
+app.get('/cliente/:id', clientes.getCliente);
+app.post('/cliente/', clientes.saveCliente);
+app.put('/cliente/:id', clientes.updateCliente);
+app.delete('/cliente/:id', clientes.deleteCliente);
 
 
 // MODELOS
