@@ -37,7 +37,9 @@ const saveProduct = (req, res) => {
         precio: req.body.precio,
         uni_9na: req.body.uni_9na,
         uni_pan: req.body.uni_pan,
-        uni_sup: req.body.uni_sup
+        uni_sup: req.body.uni_sup,
+        proveedor: req.body.proveedor,
+        factura: req.body.factura
     }
 
     conecction.query(sql, productoObj, error => {
@@ -51,22 +53,24 @@ const saveProduct = (req, res) => {
 const updateProduct = (req, res) => {
     const { id } = req.params;
     const { nombre, unidadmedida, tipo,
-        idlinea, idcategoria, parte,
+        linea, categoria, parte,
         precio, uni_9na, uni_pan,
-        uni_sup } = req.body;
+        uni_sup, proveedor, factura } = req.body;
 
 
     const sql = `UPDATE productos SET 
         nombre = '${nombre}',
         unidadmedida = '${unidadmedida}',
         tipo = '${tipo}',
-        idlinea = '${idlinea}',
-        idcategoria = '${idcategoria}',
+        linea = '${linea}',
+        categoria = '${categoria}',
         parte = '${parte}',
         precio = '${precio}',
         uni_9na = '${uni_9na}',
         uni_pan = '${uni_pan}',
-        uni_sup = '${uni_sup}'
+        uni_sup = '${uni_sup}',
+        proveedor = '${proveedor}',
+        factura = '${factura}'
         WHERE id = ${id}`;
 
     conecction.query(sql, error => {
