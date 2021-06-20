@@ -14,6 +14,8 @@ const facturas = require('./Routes/Facturas');
 const sagaji = require('./Routes/Sagaji');
 const modelos = require('./Routes/Modelos');
 const descripcion = require('./Routes/Descripcion');
+const produc_coti = require('./Routes/ProductosCotizados');
+const cotizacion = require('./Routes/Cotizaciones');
 
 
 const PORT = process.env.PORT || 3050;
@@ -82,6 +84,22 @@ app.get('/factura/:id', facturas.getFactura);
 app.post('/factura/', facturas.saveFactura);
 app.put('/factura/:id', facturas.updateFactura);
 app.delete('/factura/:id', facturas.deleteFactura);
+
+
+// PRODUCTO COTIZADO
+app.get('/producto-cotizado/', produc_coti.getAllProductoCotizado);
+app.get('/producto-cotizado/:id', produc_coti.getProductoCotizado);
+app.post('/producto-cotizado', produc_coti.saveProducto);
+app.put('/producto-cotizado/:id', produc_coti.updateProductoCotizado);
+app.delete('/producto-cotizado/:id', produc_coti.deleteProductoCotizado);
+
+
+// COTIZACION
+app.get('/cotizacion/', cotizacion.getAllCotizaciones);
+app.get('/cotizacion/:id', cotizacion.getCotizaciones);
+app.post('/cotizacion', cotizacion.saveCotizaciones);
+app.put('/cotizacion/:id', cotizacion.updateCotizaciones);
+app.delete('/cotizacion/:id', cotizacion.deleteCotizaciones);
 
 
 // MODELOS
