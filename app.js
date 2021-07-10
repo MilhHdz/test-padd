@@ -16,6 +16,8 @@ const modelos = require('./Routes/Modelos');
 const descripcion = require('./Routes/Descripcion');
 const produc_coti = require('./Routes/ProductosCotizados');
 const cotizacion = require('./Routes/Cotizaciones');
+const metodo_pago = require('./Routes/MetodoDePago');
+const vendedor = require('./Routes/Vendedores');
 
 
 const PORT = process.env.PORT || 3050;
@@ -100,6 +102,18 @@ app.get('/cotizacion/:id', cotizacion.getCotizaciones);
 app.post('/cotizacion', cotizacion.saveCotizaciones);
 app.put('/cotizacion/:id', cotizacion.updateCotizaciones);
 app.delete('/cotizacion/:id', cotizacion.deleteCotizaciones);
+
+
+// METODOS DE PAGO
+app.get('/metodo_pago', metodo_pago.getAllMetodoPago);
+
+
+// VENDEDORES
+app.get('/vendedor/', vendedor.getAllVendedores);
+app.get('/vendedor/:id', vendedor.getVendedor);
+app.post('/vendedor', vendedor.CreateVendedor);
+app.put('/vendedor/:id', vendedor.updateVendedor);
+app.delete('/vendedor/:id', vendedor.deleteVendedor);
 
 
 // MODELOS
