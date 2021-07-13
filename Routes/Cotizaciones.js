@@ -35,9 +35,10 @@ const saveCotizaciones = (req, res) => {
     }
 
 
-    conecction.query(sql, CotizacionesObj, error => {
+    conecction.query(sql, CotizacionesObj, (error, results) => {
         if (error) throw error;
-        res.json({'mensaje':'Cotizacion Guardada'});
+        console.log(results);
+        res.json({'mensaje':'Cotizacion Guardada', 'id':results.insertId});
 
     });
 }
