@@ -98,6 +98,7 @@ app.delete('/producto-cotizado/:id', produc_coti.deleteProductoCotizado);
 
 // COTIZACION
 app.get('/cotizacion/', cotizacion.getAllCotizaciones);
+app.get('/cotizacion/cliente/:id_cliente', cotizacion.getAllCotizacionesByIdCliente);
 app.get('/cotizacion/:id', cotizacion.getCotizaciones);
 app.post('/cotizacion', cotizacion.saveCotizaciones);
 app.put('/cotizacion/:id', cotizacion.updateCotizaciones);

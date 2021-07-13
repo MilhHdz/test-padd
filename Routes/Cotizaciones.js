@@ -14,6 +14,19 @@ const getAllCotizaciones = (req, res) => {
 }
 
 
+const getAllCotizacionesByIdCliente = (req, res) => {
+    const { id_cliente } = req.params;
+    const sql = `SELECT * FROM cotizacion WHERE id_cliente = ${id_cliente}`;
+
+    conecction.query(sql, (error, results) => {
+        if (error) throw error;
+        if (results.length > 0) res.json(results);
+        else res.json({'mensaje':'No hay resultados'})
+    });
+}
+
+
+
 const getCotizaciones = (req, res) => {
     const { id } = req.params
     const sql = `SELECT * FROM cotizacion WHERE id = ${id}`;
