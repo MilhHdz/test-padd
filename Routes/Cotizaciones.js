@@ -94,6 +94,7 @@ const deleteCotizaciones = (req, res) => {
 
 module.exports = {
     getAllCotizaciones,
+    getAllCotizacionesByIdCliente,
     getCotizaciones,
     saveCotizaciones,
     updateCotizaciones,
