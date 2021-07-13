@@ -31,7 +31,8 @@ const saveCotizaciones = (req, res) => {
 
     const CotizacionesObj = {
         id_trabajado: req.body.id_trabajado,
-        id_cliente: req.body.id_cliente
+        id_cliente: req.body.id_cliente,
+        descuento: req.body.descuento
     }
 
 
