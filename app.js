@@ -90,6 +90,7 @@ app.delete('/factura/:id', facturas.deleteFactura);
 
 // PRODUCTO COTIZADO
 app.get('/producto-cotizado/', produc_coti.getAllProductoCotizado);
+app.get('/producto-cotizado/cotizacion/:id_cotizacion', produc_coti.getAllProductoCotizadoByIdCotizacion);
 app.get('/producto-cotizado/:id', produc_coti.getProductoCotizado);
 app.post('/producto-cotizado', produc_coti.saveProducto);
 app.put('/producto-cotizado/:id', produc_coti.updateProductoCotizado);

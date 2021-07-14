@@ -12,6 +12,18 @@ const getAllProductoCotizado = (req, res) => {
 }
 
 
+const getAllProductoCotizadoByIdCotizacion = (req, res) => {
+    const { id_cotizacion } = req.params
+    const sql = `SELECT * FROM producto_cotizado WHERE id_cotizacion = ${id_cotizacion}`;
+
+    conecction.query(sql, (error, results) => {
+        if (error) throw error;
+        if (results.length > 0) res.json(results);
+        else res.json({'mensaje':'No hay resultados'})
+    });
+}
+
+
 const getProductoCotizado = (req, res) => {
     const { id } = req.params
     const sql = `SELECT * FROM producto_cotizado WHERE id = ${id}`;
@@ -67,6 +79,7 @@ const deleteProductoCotizado = (req, res) => {
 
 module.exports = {
     getAllProductoCotizado,
+    getAllProductoCotizadoByIdCotizacion,
     getProductoCotizado,
     saveProducto,
     updateProductoCotizado,
