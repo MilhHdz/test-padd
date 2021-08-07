@@ -27,10 +27,7 @@ const PRODUCTO = require(por_sucursal + 'producto');
 const COTIZACION = require(por_sucursal + 'cotizacion');
 const PRODUCTO_COTIZADO = require(por_sucursal + 'producto_cotizado');
 const PRODUCTO_VENDIDO = require(por_sucursal + 'producto_vendido');
-
-/*
 const VENTA = require(por_sucursal + 'venta');
-*/
 
 
 
@@ -143,6 +140,15 @@ app.get('/producto-vendido/:sucursal/:id', PRODUCTO_VENDIDO.getProductoVendido);
 app.post('/producto-vendido/:sucursal/', PRODUCTO_VENDIDO.saveProducto);
 app.put('/producto-vendido/:sucursal/:id', PRODUCTO_VENDIDO.updateProductoVendido);
 app.delete('/producto-vendido/:sucursal/:id', PRODUCTO_VENDIDO.deleteProductoVendido);
+
+
+// VENTAS
+app.get('/venta/:sucursal/', VENTA.getAllVentas);
+app.get('/venta/:sucursal/cliente/:id_cliente', VENTA.getAllVentasByIdCliente);
+app.get('/venta/:sucursal/:id', VENTA.getVentas);
+app.post('/venta/:sucursal/', VENTA.saveVentas);
+app.put('/venta/:sucursal/:id', VENTA.updateVentas);
+app.delete('/venta/:sucursal/:id', VENTA.deleteVentas);
 
 
 // MODELOS

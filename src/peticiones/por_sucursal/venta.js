@@ -90,15 +90,15 @@ const updateVentas = (req, res) => {
 const deleteVentas = (req, res) => {
     const { id, sucursal } = req.params;
 
-    const sql = `UPDATE venta${sucursal} c
-                INNER JOIN producto_cotizado${sucursal} pc
-                ON c.id = pc.id_venta
-                SET c.eliminado = 1, pc.eliminado = 1
-                WHERE c.id = ${id}`
+    const sql = `UPDATE venta${sucursal} v
+                INNER JOIN producto_vendido${sucursal} pv
+                ON v.id = pv.id_venta
+                SET v.cancelado = 1, pv.cancelado = 1
+                WHERE v.id = ${id}`
 
     connection.query(sql, error => {
         if (error) res.json({'code':500, 'message':error});
-        else res.json({'code':200, 'message':'venta eliminada'});
+        else res.json({'code':200, 'message':'venta cancelada'});
     });
 }
 
