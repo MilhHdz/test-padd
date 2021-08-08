@@ -2,6 +2,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const conecction = require('./conexcionDB');
 const cors = require('cors');
+const htpp = require('request');
 
 const ruta = './src/peticiones/';
 // Peticiones
@@ -41,6 +42,7 @@ app.use(cors(), bodyParser.json());
 app.get('/', (req, res) => {
     res.send('Welcome');
 });
+
 
 
 // PRODUCTOS
@@ -168,6 +170,8 @@ app.get('/sagaji/:tipo', sagaji.getSelect2);
 app.get('/sagaji/:tipo/:primera', sagaji.getSelect3);
 app.get('/sagaji/:tipo/:primera/:segunda', sagaji.getSelect4);
 app.get('/sagaji/:tipo/:primera/:segunda/:tercera/:pagina', sagaji.searchProduct);
+app.post('/info', sagaji.getCredentials);
+app.get('/test', sagaji.test);
 
 
 app.get('/aplicaciones/:clproducto', sagaji.getAplications);

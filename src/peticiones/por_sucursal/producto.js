@@ -33,6 +33,7 @@ const saveProduct = (req, res) => {
         nombre: req.body.nombre,
         unidad_de_medida: req.body.unidad_de_medida,
         tipo_de_producto: req.body.tipo_de_producto,
+        clave_sat: req.body.clave_sat,
         linea: req.body.linea,
         categoria: req.body.categoria,
         parte: req.body.parte,
@@ -52,7 +53,7 @@ const saveProduct = (req, res) => {
 const updateProduct = (req, res) => {
     const { id, sucursal } = req.params;
     const { nombre, unidad_de_medida, tipo_de_producto,
-        linea, categoria, parte,
+        clave_sat, linea, categoria, parte,
         precio, cantidad, proveedor, factura } = req.body;
 
 
@@ -60,6 +61,7 @@ const updateProduct = (req, res) => {
         nombre = '${nombre}',
         unidad_de_medida = '${unidad_de_medida}',
         tipo_de_producto = '${tipo_de_producto}',
+        clave_sat = '${clave_sat}',
         linea = '${linea}',
         categoria = '${categoria}',
         parte = '${parte}',
